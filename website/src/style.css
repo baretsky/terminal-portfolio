@@ -274,7 +274,7 @@ h1 {
   border-radius: 12px;
   width: 100%;
   max-width: 900px;
-  height: min(560px, 80vh);
+  height: min(640px, 88vh);
   display: flex;
   flex-direction: column;
   overflow: hidden;

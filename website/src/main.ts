@@ -138,8 +138,8 @@ function closeModal() {
 function initTerminal() {
   term = new Terminal({
     fontFamily: "'JetBrains Mono', 'Courier New', monospace",
-    fontSize: 14,
-    lineHeight: 1.4,
+    fontSize: 12,
+    lineHeight: 1.2,
     theme: {
       background: '#0D1117',
       foreground: '#e6edf3',
