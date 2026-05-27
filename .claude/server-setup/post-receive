@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# Git post-receive hook
+# Place at: /repos/terminal-portfolio.git/hooks/post-receive
+# chmod +x /repos/terminal-portfolio.git/hooks/post-receive
+
+set -e
+
+REPO_DIR="/repos/terminal-portfolio"
+WEB_ROOT="/var/www/portfolio"
+BRANCH="main"
+
+echo "==> Received push, deploying..."
+
+# Checkout working tree from the bare repo
+export GIT_WORK_TREE="$REPO_DIR"
+export GIT_DIR="$(pwd)"
+git checkout -f "$BRANCH"
+
+# Build website
+echo "==> Building website..."
+cd "$REPO_DIR/website"
+npm ci --silent
+npm run build
+
+# Sync to nginx web root
+echo "==> Syncing to $WEB_ROOT..."
+rsync -a --delete "$REPO_DIR/website/dist/" "$WEB_ROOT/"
+
+echo "==> Done. portfolio.baretsky.net updated."

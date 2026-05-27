@@ -1,0 +1,32 @@
+{
+  "name": "baretsky",
+  "version": "1.0.0",
+  "description": "Terminal portfolio — run with npx baretsky",
+  "type": "module",
+  "bin": {
+    "baretsky": "./dist/index.js"
+  },
+  "scripts": {
+    "dev": "tsx src/index.tsx",
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": ["portfolio", "terminal", "cli"],
+  "license": "MIT",
+  "dependencies": {
+    "ink": "^5.0.1",
+    "react": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/react": "^18.3.1",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  }
+}

@@ -1,0 +1,18 @@
+[Unit]
+Description=ttyd — terminal portfolio WebSocket server
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/ttyd \
+    --port 7681 \
+    --writable \
+    --max-clients 10 \
+    --ping-interval 30 \
+    /usr/local/bin/portfolio-run
+Restart=always
+RestartSec=5
+User=portfolio
+
+[Install]
+WantedBy=multi-user.target

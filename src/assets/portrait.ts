@@ -1,0 +1,31 @@
+export const portrait = `
+                                                      
+                          ........                    
+                         ,odxxxkkd,.                  
+                        .looxkkkkkx,.                 
+                        ::'';od:,;ll.                 
+                      ..oocccldl:cl:                  
+                      .cddolclooodxo.                 
+                       .oddcodxolxx;                  
+                        :cldoodxd:.                   
+                    .,c:dlc:::c:;                     
+              .:dOKKKKXKkkxxddddo:.                   
+            :0XXXXXKKKXXXX0OkdddOKXKx:.               
+          .OXXXXNXXXXXXXXXXXXXXXXXXXXXXx              
+         'KXXXXXXKNXXXXXNXXXXXXNNXXXXNNX0             
+         OXKNXXNXXNNNXXXXNXXXXNNNNNNNNNNXO            
+        cXKKXXXXXKXXXXNXXXXXXXXNXNNNNXNNXXc           
+        KXXKXXKXK0XXKXXXXXXXXXXXXNNXXXNNKXx           
+       cXXXKKXKXK0XKKXXXXXXXXKXXXXXXXXNNKXd           
+       0XXXXKKKKXOKKKXXXXXXXXKXXXXXXXXNXK00           
+      cXXXXXXKXKKkK0KKXXXKKKXXXXXXXXXNNKO0K.          
+     .XXXXXXXXKX0k0O0KXXXKKXKXXXXXXXXNNO0KX,          
+     xXXXXXXNXXXxkOO0KXXXKKKKXXXXXXXXNXOKXXo          
+    .XXXXXXXXNXX0kxOKKXXXKKKXXXXXXXXNNKOXNXx          
+       .;kOKKXXKkdokKKKXXKKKXXXXXXXXNXxdkxc           
+         ;oodxxxdoloOKKXXKKKXXXXXXXXXXoxxd,           
+          ,lodxdddlld0KXXKKXXXXXXXXNXOdxdl            
+           xlodddddlcd0XXKKXXXXXXNNX0oddl,            
+          .0xoloddddood0KKKXXXXXXXXOoddo:.            
+           xOOoloddddodO0KXXNXXXXK0ldxol,             
+`;

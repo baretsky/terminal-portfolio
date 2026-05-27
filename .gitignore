@@ -1,0 +1,8 @@
+node_modules/
+dist/
+*.tgz
+website/node_modules/
+website/dist/
+Dara_DC HN.docx
+IMG_2660-no-bg.png
+.claude/.claude/memory/
