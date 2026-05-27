@@ -162,6 +162,7 @@ function initTerminal() {
   term.loadAddon(fitAddon);
   term.open(container);
   fitAddon.fit();
+  term.resize(term.cols, Math.min(term.rows, 16));
 
   const wsUrl = `wss://wsportfolio.baretsky.net/ws`;
   socket = new WebSocket(wsUrl);
@@ -192,7 +193,10 @@ function initTerminal() {
     }
   });
 
-  const ro = new ResizeObserver(() => fitAddon?.fit());
+  const ro = new ResizeObserver(() => {
+    fitAddon?.fit();
+    if (term && term.rows > 16) term.resize(term.cols, 16);
+  });
   ro.observe(container);
 }
 
