@@ -4,7 +4,7 @@
   "description": "Terminal portfolio — run with npx baretsky",
   "type": "module",
   "bin": {
-    "baretsky": "./dist/index.js"
+    "baretsky": "dist/index.js"
   },
   "scripts": {
     "dev": "tsx src/index.tsx",
@@ -17,7 +17,11 @@
   "engines": {
     "node": ">=18"
   },
-  "keywords": ["portfolio", "terminal", "cli"],
+  "keywords": [
+    "portfolio",
+    "terminal",
+    "cli"
+  ],
   "license": "MIT",
   "dependencies": {
     "ink": "^5.0.1",
