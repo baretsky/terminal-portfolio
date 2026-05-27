@@ -163,7 +163,7 @@ function initTerminal() {
   term.open(container);
   fitAddon.fit();
 
-  const wsUrl = `wss://${location.host}/ws`;
+  const wsUrl = `wss://ws.portfolio.baretsky.net/ws`;
   socket = new WebSocket(wsUrl);
 
   socket.onopen = () => {
