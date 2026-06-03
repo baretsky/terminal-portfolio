@@ -23,15 +23,20 @@ export default function App() {
   const [lang, setLang] = useState<Lang>('en');
   const { exit } = useApp();
   const { stdout } = useStdout();
-  const cols = stdout?.columns ?? 120;
 
-  useInput((input, key) => {
+  // Use || instead of ?? so that 0 (PTY default before SIGWINCH) also falls back to 120.
+  // ttyd creates the PTY at 80 cols by default; the browser sends ResizeTerminal shortly after
+  // auth, so Ink will re-render at the correct width. Threshold lowered to 60 (was 100) so
+  // the initial 80-col render doesn't get blocked.
+  const cols = stdout?.columns || 120;
+
+  useInput((input: any, key: any) => {
     if (input === 'q' || (key.ctrl && input === 'c')) {
       exit();
       return;
     }
     if (input === 't') {
-      setLang(l => l === 'en' ? 'fr' : 'en');
+      setLang((l: Lang) => l === 'en' ? 'fr' : 'en');
       return;
     }
 
@@ -44,11 +49,11 @@ export default function App() {
     }
   });
 
-  if (cols < 100) {
+  if (cols < 60) {
     return (
       <Box flexDirection="column" padding={2}>
         <Text color="#FF7A00" bold>Terminal too narrow</Text>
-        <Text color="#888888">Please resize to at least 100 columns (currently {cols}).</Text>
+        <Text color="#888888">Please resize to at least 60 columns (currently {cols}).</Text>
       </Box>
     );
   }

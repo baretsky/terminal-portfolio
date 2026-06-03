@@ -165,9 +165,14 @@ function initTerminal() {
   term.resize(term.cols, Math.min(term.rows, 16));
 
   const wsUrl = `wss://wsportfolio.baretsky.net/ws`;
-  socket = new WebSocket(wsUrl);
+  socket = new WebSocket(wsUrl, ['tty']);
 
   socket.onopen = () => {
+    // Send resize BEFORE AuthToken so ttyd sets PTY dimensions before spawning the child process.
+    // This ensures Ink sees the correct columns from the first render (avoids "Terminal too narrow").
+    const cols = Math.max(term!.cols, 120);
+    const rows = Math.min(term!.rows || 16, 16);
+    socket!.send(JSON.stringify({ ResizeTerminal: { columns: cols, rows } }));
     socket!.send(JSON.stringify({ AuthToken: '' }));
   };
 
