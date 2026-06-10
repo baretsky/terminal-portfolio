@@ -4,36 +4,37 @@ export const content = {
   en: {
     profile: {
       name: 'Dara DULON',
-      title: 'Software Engineer',
+      title: 'Full-Stack Developer',
       subtitle: 'Web · Cloud · Open Source',
       bio: "I operate on a simple rule: if I have to do it more than twice, I script it. I'd rather spend a week automating a process than spend an hour doing it manually. I focus on infrastructure and pipelines because writing application code makes my head hurt.",
       location: 'Paris, France',
     },
     experience: [
       {
-        company: 'CREDIT AGRICOLE ASSURANCES (CAAS)',
-        role: 'RESPONSABLE PILOTAGE FONCTIONNEMENT',
+        company: 'Elvym',
+        role: 'Freelance Developer',
         period: '2025 – Present',
-        description: 'Technical coordination and incident management (Savings, Retirement, and Insurance). Technical feasibility analysis for application updates. Liaison between business requirements and IT development teams.',
+        description: 'Private-club recruitment platform for luxury hospitality (exclusive job listings, application tracking, editorial section). E-learning platform for front-end/back-end fundamentals with in-browser coding. SaaS invoicing & quoting platform for SMBs with CI/CD pipelines and automated testing. Booking system for hair salons with multi-tenant config, Terraform/AWS deployment, and no-show management.',
+      },
+      {
+        company: 'Crédit Agricole Assurances',
+        role: 'IT Operations Manager',
+        period: '2025 – Present',
+        description: 'Operational management and incident coordination (ITIL methodology) on Savings, Retirement & Insurance applications (Mainframe/Open). Manages maintenance tickets, unit-linked fund lifecycle, and daily/monthly batch processing. Leads operational committees and anti-recurrence action plans.',
       },
       {
         company: 'HN Services',
-        role: "INGENIEUR D'ÉTUDES (PROJET DE RECHERCHE IA)",
-        period: '2025 – 2025',
-        description: "Development of an attack detection solution using deep learning models. Implementation of computer vision algorithms (Python, TensorFlow).",
-      },
-      {
-        company: 'SNCF Réseau',
-        role: 'Apprenticeship',
-        period: '2021 – 2023',
-        description: "Development of internal applications and process automation. Facilitation of Agile Scrum ceremonies (Daily Stand-ups, Retrospectives).",
+        role: 'Research Engineer (AI)',
+        period: '2025',
+        description: 'Detection of adversarial attacks on AI vision models. Custom AlexNet model trained on MNIST in Python; saliency maps used to identify critical zones and validate robustness against adversarial perturbations.',
       },
     ],
     skills: [
-      { category: 'Languages', items: ['Python', 'TypeScript', 'SQL', 'Bash'] },
-      { category: 'AI & ML', items: ['TensorFlow', 'Deep Learning', 'Computer Vision', 'NumPy'] },
-      { category: 'Web & APIs', items: ['FastAPI', 'React', 'Node.js', 'REST'] },
-      { category: 'DevOps & Tools', items: ['Docker', 'Git', 'CI/CD', 'Linux'] },
+      { category: 'Languages', items: ['Java', 'Python', 'JavaScript', 'TypeScript'] },
+      { category: 'Frameworks', items: ['React', 'SpringBoot', 'Tailwind', 'Node.js'] },
+      { category: 'DevOps', items: ['Docker', 'Git', 'Jenkins', 'Terraform'] },
+      { category: 'Automation', items: ['REST API', 'WebHooks', 'Selenium', 'CI/CD'] },
+      { category: 'Certifications', items: ['TOEIC 975/990', 'Voltaire 596', 'ITIL® 4 Foundation'] },
     ],
     projects: [
       {
@@ -91,36 +92,37 @@ export const content = {
   fr: {
     profile: {
       name: 'Dara DULON',
-      title: 'Ingénieur Informatique',
+      title: 'Développeur Full-Stack',
       subtitle: 'Web · Cloud · Open Source',
       bio: "J'applique une règle simple : si je dois faire quelque chose plus de deux fois, je l'automatise. Je préfère passer une semaine à automatiser un processus plutôt qu'une heure à le faire manuellement. Je me concentre sur l'infrastructure et les pipelines car écrire du code applicatif me donne mal à la tête.",
       location: 'Paris, France',
     },
     experience: [
       {
-        company: 'CREDIT AGRICOLE ASSURANCES (CAAS)',
-        role: 'RESPONSABLE PILOTAGE FONCTIONNEMENT',
-        period: '2025 – Present',
-        description: 'Coordination technique et pilotage des incidents (Épargne-Retraite-Prévoyance). Analyse de faisabilité technique pour les évolutions applicatives. Interface entre les besoins métiers et les équipes de réalisation IT.',
+        company: 'Elvym',
+        role: 'Développeur Freelance',
+        period: '2025 – Présent',
+        description: "Plateforme de recrutement « club privé » pour l'hôtellerie de luxe (offres exclusives, suivi des candidatures, section éditoriale). Plateforme e-learning front/back-end avec codage en ligne. SaaS de facturation pour PME avec CI/CD et tests automatisés. Système de réservation multi-tenant pour salons de coiffure avec déploiement Terraform/AWS et gestion des no-shows.",
+      },
+      {
+        company: 'Crédit Agricole Assurances',
+        role: 'Responsable Pilotage Fonctionnement',
+        period: '2025 – Présent',
+        description: "Pilotage opérationnel et gestion des incidents (ITIL) sur le périmètre Épargne-Retraite-Prévoyance (Mainframe/Open). Coordination des tickets de maintenance, cycle de vie des unités de compte et sécurisation des batchs quotidiens/mensuels. Animation des comités opérationnels et plans d'actions anti-récurrence.",
       },
       {
         company: 'HN Services',
-        role: "INGENIEUR D'ÉTUDES (PROJET DE RECHERCHE IA)",
-        period: '2025 – 2025',
-        description: "Développement d'une solution de détection d'attaques sur modèles de Deep Learning. Implémentation d'algorithmes de Computer Vision (Python, TensorFlow).",
-      },
-      {
-        company: 'SNCF Réseau',
-        role: 'Apprenticeship',
-        period: '2021 – 2023',
-        description: "Développement d'applications internes et automatisation de processus. Animation de cérémonies Agile Scrum (Daily, Retrospectives).",
+        role: "Ingénieur d'Études (Recherche IA)",
+        period: '2025',
+        description: "Détection d'attaques adversariales sur des modèles de vision IA. Modèle AlexNet entraîné sur MNIST en Python ; cartes de saillance pour identifier les zones critiques et valider la robustesse face aux perturbations adversariales.",
       },
     ],
     skills: [
-      { category: 'Langages', items: ['Python', 'TypeScript', 'SQL', 'Bash'] },
-      { category: 'IA & ML', items: ['TensorFlow', 'Deep Learning', 'Computer Vision', 'NumPy'] },
-      { category: 'Web & APIs', items: ['FastAPI', 'React', 'Node.js', 'REST'] },
-      { category: 'DevOps & Outils', items: ['Docker', 'Git', 'CI/CD', 'Linux'] },
+      { category: 'Langages', items: ['Java', 'Python', 'JavaScript', 'TypeScript'] },
+      { category: 'Frameworks', items: ['React', 'SpringBoot', 'Tailwind', 'Node.js'] },
+      { category: 'DevOps', items: ['Docker', 'Git', 'Jenkins', 'Terraform'] },
+      { category: 'Automatisation', items: ['REST API', 'WebHooks', 'Selenium', 'CI/CD'] },
+      { category: 'Certifications', items: ['TOEIC 975/990', 'Voltaire 596', 'ITIL® 4 Foundation'] },
     ],
     projects: [
       {
