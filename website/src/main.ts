@@ -110,6 +110,7 @@ const container = document.getElementById('terminalContainer')!;
 let term: Terminal | null = null;
 let fitAddon: FitAddon | null = null;
 let socket: WebSocket | null = null;
+let resizeObserver: ResizeObserver | null = null;
 
 function openModal() {
   overlay.style.visibility = 'visible';
@@ -139,7 +140,6 @@ function initTerminal() {
   term = new Terminal({
     fontFamily: "'JetBrains Mono', 'Courier New', monospace",
     fontSize: 12,
-    lineHeight: 1.2,
     theme: {
       background: '#0D1117',
       foreground: '#e6edf3',
@@ -162,29 +162,23 @@ function initTerminal() {
   term.loadAddon(fitAddon);
   term.open(container);
   fitAddon.fit();
-  term.resize(term.cols, Math.min(term.rows, 16));
 
-  const wsUrl = `wss://wsportfolio.baretsky.net/ws`;
+  // ttyd protocol: 'tty' subprotocol required, binary frames,
+  // client cmds: '0'+data = input, '1'+JSON = resize; server cmds: '0' = output
+  const wsUrl = `wss://portfolio.baretsky.net/ws`;
   socket = new WebSocket(wsUrl, ['tty']);
+  socket.binaryType = 'arraybuffer';
 
   socket.onopen = () => {
-    // Send resize BEFORE AuthToken so ttyd sets PTY dimensions before spawning the child process.
-    // This ensures Ink sees the correct columns from the first render (avoids "Terminal too narrow").
-    const cols = Math.max(term!.cols, 120);
-    const rows = Math.min(term!.rows || 16, 16);
-    socket!.send(JSON.stringify({ ResizeTerminal: { columns: cols, rows } }));
-    socket!.send(JSON.stringify({ AuthToken: '' }));
+    socket!.send(JSON.stringify({ AuthToken: '', columns: term!.cols, rows: term!.rows }));
   };
 
   socket.onmessage = (e: MessageEvent) => {
-    if (typeof e.data === 'string') {
-      // ttyd sends JSON at the start, then raw terminal data
-      try {
-        const msg = JSON.parse(e.data);
-        if (msg.Arguments) return; // initial handshake
-      } catch { /* raw data */ }
-    }
-    term!.write(typeof e.data === 'string' ? e.data : new Uint8Array(e.data));
+    if (!term) return;
+    const data = new Uint8Array(e.data as ArrayBuffer);
+    const cmd = String.fromCharCode(data[0]);
+    if (cmd === '0') term.write(data.subarray(1));
+    // '1' = window title, '2' = preferences — ignored
   };
 
   socket.onerror = () => {
@@ -194,18 +188,23 @@ function initTerminal() {
 
   term.onData((data: string) => {
     if (socket?.readyState === WebSocket.OPEN) {
-      socket.send(JSON.stringify({ Input: data }));
+      socket.send('0' + data);
     }
   });
 
-  const ro = new ResizeObserver(() => {
-    fitAddon?.fit();
-    if (term && term.rows > 16) term.resize(term.cols, 16);
+  resizeObserver = new ResizeObserver(() => {
+    if (!term || !fitAddon) return;
+    fitAddon.fit();
+    if (socket?.readyState === WebSocket.OPEN) {
+      socket.send('1' + JSON.stringify({ columns: term.cols, rows: term.rows }));
+    }
   });
-  ro.observe(container);
+  resizeObserver.observe(container);
 }
 
 function disposeTerminal() {
+  resizeObserver?.disconnect();
+  resizeObserver = null;
   socket?.close();
   socket = null;
   term?.dispose();

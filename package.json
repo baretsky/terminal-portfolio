@@ -1,6 +1,6 @@
 {
   "name": "baretsky",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Terminal portfolio — run with npx baretsky",
   "type": "module",
   "bin": {

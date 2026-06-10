@@ -15,7 +15,7 @@ export default function NavBar({ active, lang }: Props) {
   const { tabs, hint } = content[lang].nav;
 
   return (
-    <Box borderStyle="single" borderColor="#333333" paddingX={1} marginTop={1}>
+    <Box borderStyle="single" borderColor="#333333" paddingX={1} marginTop={1} flexShrink={0}>
       {SECTION_IDS.map((id, i) => (
         <React.Fragment key={id}>
           {i > 0 && <Text color="#444444"> · </Text>}

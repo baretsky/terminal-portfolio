@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Text, useInput, useApp, useStdout } from 'ink';
 import NavBar, { Section, SECTION_IDS } from './components/NavBar.js';
 import Home from './components/Home.js';
@@ -23,12 +23,19 @@ export default function App() {
   const [lang, setLang] = useState<Lang>('en');
   const { exit } = useApp();
   const { stdout } = useStdout();
+  // Use || instead of ?? so that 0 (PTY size not yet set) also falls back.
+  const [size, setSize] = useState(() => ({
+    cols: stdout?.columns || 120,
+    rows: stdout?.rows || 40,
+  }));
+  const { cols, rows } = size;
 
-  // Use || instead of ?? so that 0 (PTY default before SIGWINCH) also falls back to 120.
-  // ttyd creates the PTY at 80 cols by default; the browser sends ResizeTerminal shortly after
-  // auth, so Ink will re-render at the correct width. Threshold lowered to 60 (was 100) so
-  // the initial 80-col render doesn't get blocked.
-  const cols = stdout?.columns || 120;
+  useEffect(() => {
+    if (!stdout) return;
+    const onResize = () => setSize({ cols: stdout.columns || 120, rows: stdout.rows || 40 });
+    stdout.on('resize', onResize);
+    return () => { stdout.off('resize', onResize); };
+  }, [stdout]);
 
   useInput((input: any, key: any) => {
     if (input === 'q' || (key.ctrl && input === 'c')) {
@@ -59,8 +66,8 @@ export default function App() {
   }
 
   return (
-    <Box flexDirection="column" paddingX={3}>
-      <Box paddingY={1} borderStyle="single" borderColor="#1A1A1A" marginBottom={0}>
+    <Box flexDirection="column" paddingX={3} height={rows}>
+      <Box paddingY={1} borderStyle="single" borderColor="#1A1A1A" marginBottom={0} flexShrink={0}>
         <Text color="#FF7A00" bold>▸ portfolio</Text>
         <Text color="#333333">  ·  </Text>
         <Text color="#444444">baretsky.net</Text>
@@ -70,7 +77,7 @@ export default function App() {
         <Text color={lang === 'fr' ? '#FF7A00' : '#555555'} bold={lang === 'fr'}>FR</Text>
       </Box>
 
-      <Box flexGrow={1} paddingX={1} minHeight={30}>
+      <Box flexGrow={1} paddingX={1} overflow="hidden">
         <SectionContent section={section} lang={lang} />
       </Box>
 
